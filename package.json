@@ -1,0 +1,29 @@
+{
+  "name": "hospitalsanitizationtracker",
+  "version": "1.0.0",
+  "description": "DApp for tracing sanitization activities in hospitals using blockchain technology - Project for Blockchain and Cryptocurrencies course",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancescoCastaldi/HospitalSanitizationTracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrancescoCastaldi/HospitalSanitizationTracker/issues"
+  },
+  "homepage": "https://github.com/FrancescoCastaldi/HospitalSanitizationTracker#readme",
+  "devDependencies": {
+  "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+  "hardhat": "^2.19.0"
+	}
+
+}
