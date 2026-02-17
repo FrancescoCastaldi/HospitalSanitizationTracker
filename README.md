@@ -2,30 +2,30 @@
 
 DApp for tracing sanitization activities in hospitals using blockchain technology - Project for Blockchain and Cryptocurrencies course
 
-## 📋 ROADMAP COMPLETA - Cosa manca per completare il progetto
+## ROADMAP COMPLETA - Cosa manca per completare il progetto
 
-### ✅ FASE 1: Setup Iniziale (COMPLETATO)
+### [COMPLETATO] FASE 1: Setup Iniziale
 - [x] Repository GitHub creato: `HospitalSanitizationTracker`
 - [x] Node.js installato (v22.13.1)
 - [x] Hardhat inizializzato e configurato
 - [x] Struttura cartelle progetto creata
 
-### ✅ FASE 2: Smart Contract (COMPLETATO)
+### [COMPLETATO] FASE 2: Smart Contract
 - [x] Smart contract `SanitizationTracker.sol` sviluppato con:
   - Strutture dati (Room, SanitizationRecord)
   - Funzioni principali (addRoom, recordSanitization, verifySanitization)
   - Modifiers per sicurezza (onlyAuthorizedOperator, validRoom)
-  - Eventi per tracciabilità
+  - Eventi per tracciabilita
 - [x] Compilazione smart contract riuscita
 - [x] 14 test unitari creati e superati al 100%
 - [x] Deploy su rete locale Hardhat testato
 
-### ✅ FASE 3: Account Infura (COMPLETATO)
+### [COMPLETATO] FASE 3: Account Infura
 - [x] Account Infura.io registrato
 - [x] Progetto Infrastructure creato
 - [x] API Key e RPC URL Sepolia ottenuti
 
-### 🔄 FASE 4: Deploy su Testnet Sepolia (DA FARE)
+### [DA FARE] FASE 4: Deploy su Testnet Sepolia
 **Passi necessari:**
 1. Ottenere SepoliaETH gratuiti da un faucet:
    - https://sepoliafaucet.com/ oppure
@@ -41,7 +41,7 @@ DApp for tracing sanitization activities in hospitals using blockchain technolog
 6. Salvare indirizzo contratto deployato
 7. Verificare contratto su Etherscan Sepolia
 
-### 📱 FASE 5: Frontend DApp (DA FARE)
+### [DA FARE] FASE 5: Frontend DApp
 **Tecnologie da usare:**
 - React.js per UI
 - ethers.js o Web3.js per interazione blockchain
@@ -82,16 +82,16 @@ frontend/
 └── README.md
 ```
 
-### 🧪 FASE 6: Testing Completo (DA FARE)
+### [DA FARE] FASE 6: Testing Completo
 1. Test frontend con MetaMask su Sepolia
-2. Test tutte le funzionalità:
+2. Test tutte le funzionalita:
    - Aggiungere stanze
    - Registrare sanificazioni
    - Verificare storico
 3. Test su diversi browser
 4. Test responsive su mobile
 
-### 📝 FASE 7: Documentazione (DA FARE)
+### [DA FARE] FASE 7: Documentazione
 **File da aggiornare/creare:**
 1. **README.md completo** con:
    - Descrizione progetto
@@ -104,9 +104,9 @@ frontend/
    - Casi d'uso dettagliati
    - Diagrammi UML (opzionale)
    - Spiegazione scelte tecnologiche
-3. **Commenti nel codice** (già fatto per smart contract)
+3. **Commenti nel codice** (gia fatto per smart contract)
 
-### 🎓 FASE 8: Preparazione Esame (DA FARE)
+### [DA FARE] FASE 8: Preparazione Esame
 **Materiali da preparare:**
 1. **Presentazione PowerPoint/PDF** (15-20 slides):
    - Introduzione problema
@@ -117,19 +117,19 @@ frontend/
    - Conclusioni e sviluppi futuri
 2. **Demo video** (opzionale ma consigliato):
    - Screen recording utilizzo DApp
-   - Spiegazione funzionalità
+   - Spiegazione funzionalita
 3. **Script presentazione**:
    - Cosa dire per ogni slide
    - Tempo: 10-15 minuti
 
-### 🚀 FASE 9: Deploy Produzione (OPZIONALE)
+### [OPZIONALE] FASE 9: Deploy Produzione
 - Hosting frontend su:
   - Vercel (consigliato, gratuito)
   - Netlify
   - GitHub Pages
 - Deploy smart contract su Mainnet (SCONSIGLIATO - costi gas reali)
 
-### 📊 FASE 10: Miglioramenti Futuri (OPZIONALE)
+### [OPZIONALE] FASE 10: Miglioramenti Futuri
 - Sistema di notifiche
 - QR Code per stanze
 - App mobile con React Native
@@ -139,40 +139,40 @@ frontend/
 
 ---
 
-## 🎯 PRIORITÀ IMMEDIATE (Prossima sessione):
+## PRIORITA IMMEDIATE (Prossima sessione):
 
-### 1️⃣ PRIORITÀ ALTA - Deploy Testnet
+### [1] PRIORITA ALTA - Deploy Testnet
 - [ ] Ottenere SepoliaETH da faucet
 - [ ] Configurare .env con Infura API key
 - [ ] Deploy contratto su Sepolia
 - [ ] Testare contratto su Sepolia
 
-### 2️⃣ PRIORITÀ ALTA - Frontend Base
+### [2] PRIORITA ALTA - Frontend Base
 - [ ] Inizializzare progetto React
 - [ ] Creare componente connessione MetaMask
 - [ ] Implementare interazione con contratto
-- [ ] Creare form base per funzionalità principali
+- [ ] Creare form base per funzionalita principali
 
-### 3️⃣ PRIORITÀ MEDIA - Documentazione
+### [3] PRIORITA MEDIA - Documentazione
 - [ ] Scrivere guida installazione
 - [ ] Aggiungere screenshots
 - [ ] Documentare API contratto
 
-### 4️⃣ PRIORITÀ BASSA - Preparazione Esame
+### [4] PRIORITA BASSA - Preparazione Esame
 - [ ] Creare presentazione
 - [ ] Preparare demo
-- [ [ ] Studiare concetti teorici Proposal 7
+- [ ] Studiare concetti teorici Proposal 7
 
 ---
 
-## 💾 STATO ATTUALE (17 Febbraio 2026, 23:00)
+## STATO ATTUALE (17 Febbraio 2026, 23:00)
 
 **Completato:**
-- ✅ Smart contract funzionante con 14 test passed
-- ✅ Deploy script Hardhat Ignition
-- ✅ Configurazione Hardhat
-- ✅ Account Infura con API key
-- ✅ Repository GitHub con tutto il codice
+- [OK] Smart contract funzionante con 14 test passed
+- [OK] Deploy script Hardhat Ignition
+- [OK] Configurazione Hardhat
+- [OK] Account Infura con API key
+- [OK] Repository GitHub con tutto il codice
 
 **Tempo stimato rimanente:**
 - Deploy Sepolia: 1-2 ore
@@ -185,7 +185,7 @@ frontend/
 
 ---
 
-## 📞 Link Utili
+## Link Utili
 
 - **Repository GitHub**: https://github.com/FrancescoCastaldi/HospitalSanitizationTracker
 - **Infura Dashboard**: https://app.infura.io/
@@ -196,7 +196,7 @@ frontend/
 
 ---
 
-## 🔑 Informazioni Progetto
+## Informazioni Progetto
 
 - **Proposta**: #7 - DLTs for Traceability in Supply Chain
 - **Caso d'uso**: Tracciamento sanificazioni in ospedali
@@ -209,18 +209,18 @@ frontend/
 
 ---
 
-## 📧 Note per il Professore
+## Note per il Professore
 
-Questo progetto implementa la Proposal 7 "DLTs for Traceability in Supply Chain" con focus specifico sul settore sanitario. Il sistema permette di tracciare in modo immutabile e trasparente le attività di sanificazione negli ospedali, garantendo conformità normativa e sicurezza dei pazienti.
+Questo progetto implementa la Proposal 7 "DLTs for Traceability in Supply Chain" con focus specifico sul settore sanitario. Il sistema permette di tracciare in modo immutabile e trasparente le attivita di sanificazione negli ospedali, garantendo conformita normativa e sicurezza dei pazienti.
 
 **Vantaggi della soluzione blockchain:**
-- Immutabilità dei record di sanificazione
-- Trasparenza e auditabilità
+- Immutabilita dei record di sanificazione
+- Trasparenza e auditabilita
 - Riduzione frodi e falsificazioni
-- Conformità normative automatizzata
-- Tracciabilità end-to-end
+- Conformita normative automatizzata
+- Tracciabilita end-to-end
 
 ---
 
-**Ultimo aggiornamento**: 17 Febbraio 2026
+**Ultimo aggiornamento**: 18 Febbraio 2026  
 **Prossima sessione**: Deploy su Sepolia Testnet
