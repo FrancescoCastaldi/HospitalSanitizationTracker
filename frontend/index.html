@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hospital Sanitization Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Hospital Sanitization Tracker</h1>
+    <button id="connectButton">Connect MetaMask</button>
+    <span id="walletInfo"></span>
+    <span id="walletRole"></span>
+
+    <!-- Selettore ruolo desiderato (solo informativo) -->
+    <label for="desiredRole">Desired role:</label>
+    <select id="desiredRole">
+      <option value="auto">Auto</option>
+      <option value="admin">Admin</option>
+      <option value="operator">Operator</option>
+    </select>
+    <span id="desiredRoleHint"></span>
+  </header>
+
+  <main>
+    <section>
+      <h2>Register Area (Owner)</h2>
+      <label>Area ID</label>
+      <input id="areaId" type="number" />
+      <label>Area Name</label>
+      <input id="areaName" type="text" />
+      <button id="registerAreaBtn">Register Area</button>
+      <div class="msg" id="areaMsg"></div>
+    </section>
+
+    <section>
+      <h2>Register Operator (Owner)</h2>
+      <label>Operator Address</label>
+      <input id="operatorAddress" type="text" />
+      <label>Name</label>
+      <input id="operatorName" type="text" />
+      <button id="registerOperatorBtn">Register Operator</button>
+      <div class="msg" id="operatorMsg"></div>
+    </section>
+
+    <section>
+      <h2>Record Sanitization (Operator)</h2>
+      <label>Area ID</label>
+      <input id="sanitAreaId" type="number" />
+      <label>Outcome (e.g. OK / FAIL)</label>
+      <input id="sanitOutcome" type="text" />
+      <label>Notes</label>
+      <input id="sanitNotes" type="text" />
+      <button id="recordSanitizationBtn">Record Sanitization</button>
+      <div class="msg" id="sanitMsg"></div>
+    </section>
+
+    <section>
+      <h2>Area Status</h2>
+      <label>Area ID</label>
+      <input id="statusAreaId" type="number" />
+      <button id="getStatusBtn">Get Status</button>
+      <pre id="statusResult"></pre>
+    </section>
+
+    <section>
+      <h2>Area Events</h2>
+      <label>Area ID</label>
+      <input id="eventsAreaId" type="number" />
+      <button id="getEventsBtn">Get Events</button>
+      <pre id="eventsResult"></pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
