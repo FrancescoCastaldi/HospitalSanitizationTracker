@@ -71,10 +71,11 @@ test/
 - Provider RPC: Infura (MetaMask Developer)
 - Wallet deployer: 0xc31ab9aca37aEA5f4261c89A5fCcC541D741E5b0
 
-### [DA FARE] FASE 5 - Frontend DApp
+### [COMPLETATO] FASE 5 - Frontend DApp
 - Interfaccia web (HTML/CSS/JS) per interazione col contratto
-- Integrazione MetaMask per firma transazioni
-- Visualizzazione storico sanificazioni
+- Integrazione MetaMask per firma transazioni (ruoli admin/operator)
+- Visualizzazione stato aree e storico delle sanificazioni per ogni area
+
 
 ### [DA FARE] FASE 6 - Documentazione Finale
 - Documentazione tecnica completa
