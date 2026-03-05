@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏥 HospitalSanitizationTracker
+# HospitalSanitizationTracker
 
 **DApp per la tracciabilità delle attività di sanificazione ospedaliera tramite blockchain**
 
@@ -17,20 +17,20 @@
 
 ---
 
-## 📋 Indice
+## Indice
 
-1. [Descrizione](#-descrizione)
-2. [Tecnologie Utilizzate](#%EF%B8%8F-tecnologie-utilizzate)
-3. [Architettura e Struttura Progetto](#-architettura-e-struttura-progetto)
-4. [Smart Contract – Funzionalità](#-smart-contract--funzionalità)
-5. [Frontend DApp – Funzionalità](#-frontend-dapp--funzionalità)
-6. [Installazione e Utilizzo](#-installazione-e-utilizzo)
-7. [Contratto Deployato](#-contratto-deployato)
-8. [Autore](#-autore)
+1. [Descrizione](#descrizione)
+2. [Tecnologie Utilizzate](#tecnologie-utilizzate)
+3. [Architettura e Struttura Progetto](#architettura-e-struttura-progetto)
+4. [Smart Contract – Funzionalità](#smart-contract--funzionalit%C3%A0)
+5. [Frontend DApp – Funzionalità](#frontend-dapp--funzionalit%C3%A0)
+6. [Installazione e Utilizzo](#installazione-e-utilizzo)
+7. [Contratto Deployato](#contratto-deployato)
+8. [Autore](#autore)
 
 ---
 
-## 📝 Descrizione
+## Descrizione
 
 Sistema basato su smart contract Ethereum che permette a operatori autorizzati di **registrare e certificare le operazioni di sanificazione** di aree ospedaliere.
 
@@ -38,7 +38,7 @@ Ogni evento è registrato in modo **immutabile sulla blockchain** e può essere 
 
 ---
 
-## ⚙️ Tecnologie Utilizzate
+## Tecnologie Utilizzate
 
 | Tecnologia | Versione | Ruolo |
 |---|---|---|
@@ -52,7 +52,7 @@ Ogni evento è registrato in modo **immutabile sulla blockchain** e può essere 
 
 ---
 
-## 🏗️ Architettura e Struttura Progetto
+## Architettura e Struttura Progetto
 
 ```
 HospitalSanitizationTracker/
@@ -76,7 +76,7 @@ HospitalSanitizationTracker/
 
 ---
 
-## 🔐 Smart Contract – Funzionalità
+## Smart Contract – Funzionalità
 
 Il contratto `SanitizationTracker.sol` implementa le seguenti funzionalità:
 
@@ -114,7 +114,7 @@ Il contratto `SanitizationTracker.sol` implementa le seguenti funzionalità:
 
 ---
 
-## 🖥️ Frontend DApp – Funzionalità
+## Frontend DApp – Funzionalità
 
 La cartella `frontend/` contiene una DApp web completa che si connette al contratto tramite MetaMask.
 
@@ -141,7 +141,7 @@ La cartella `frontend/` contiene una DApp web completa che si connette al contra
 
 ---
 
-## 🚀 Installazione e Utilizzo
+## Installazione e Utilizzo
 
 ### Prerequisiti
 
@@ -202,21 +202,21 @@ Aprire il browser su `http://localhost:3000` e selezionare la rete **Sepolia** i
 
 ---
 
-## 📜 Contratto Deployato
+## Contratto Deployato
 
 | Campo | Valore |
 |---|---|
 | **Rete** | Ethereum Sepolia Testnet |
 | **Indirizzo** | `0x679C6625f9479cf3b711F7a246C8F7a6655E4517` |
 | **Data Deploy** | 21 Febbraio 2026 |
-| **Etherscan** | [Visualizza su Sepolia Etherscan →](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
+| **Etherscan** | [Visualizza su Sepolia Etherscan](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
 
 ---
 
-## 👤 Autore
+## Autore
 
 **Francesco Castaldi**  
-Università di Bologna – Corso di Blockchain e Criptovalute  
+Università di Bologna – Corso di Blockchain e Criptovalute
 
 ---
 
