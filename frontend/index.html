@@ -1,78 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Hospital Sanitization Tracker</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Sanitization Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+
+<header>
     <h1>Hospital Sanitization Tracker</h1>
-    <button id="connectButton">Connect MetaMask</button>
-    <span id="walletInfo"></span>
-    <span id="walletRole"></span>
+    <div id="walletInfo"></div>
+    <span id="walletRole" class="role-badge">Guest</span>
+    <div class="role-selector">
+        <div style="display:flex; gap:8px; align-items:center;">
+            <label style="color:#aaa; font-size:0.85rem; margin:0;">Login as:</label>
+            <select id="desiredRole">
+                <option value="admin">Admin</option>
+                <option value="operator">Operator</option>
+            </select>
+        </div>
+        <p id="desiredRoleHint" class="hint"></p>
+    </div>
+    <button id="connectButton">Connect</button>
+    <div id="loader" class="loader"></div>
+</header>
 
-    <!-- Selettore ruolo desiderato (solo informativo) -->
-    <label for="desiredRole">Desired role:</label>
-    <select id="desiredRole">
-      <option value="auto">Auto</option>
-      <option value="admin">Admin</option>
-      <option value="operator">Operator</option>
-    </select>
-    <span id="desiredRoleHint"></span>
-  </header>
+<main>
+    <section id="dashboardSection" style="grid-column: 1 / -1;">
+        <div class="section-header">
+            <h2>Area Overview</h2>
+            <button id="refreshDashboardBtn" class="btn-small">Refresh</button>
+        </div>
 
-  <main>
-    <section>
-      <h2>Register Area (Owner)</h2>
-      <label>Area ID</label>
-      <input id="areaId" type="number" />
-      <label>Area Name</label>
-      <input id="areaName" type="text" />
-      <button id="registerAreaBtn">Register Area</button>
-      <div class="msg" id="areaMsg"></div>
+        <div class="scan-controls">
+            <div class="scan-option">
+                <label class="scan-label">
+                    <input type="radio" name="scanMode" value="manual" checked> ID specifici
+                </label>
+                <input type="text" id="manualIds" placeholder="es. 101, 5, 200" style="width:220px;">
+            </div>
+            <div class="scan-option">
+                <label class="scan-label">
+                    <input type="radio" name="scanMode" value="range"> Intervallo
+                </label>
+                <span style="display:flex; gap:6px; align-items:center;">
+                    <input type="number" id="scanFrom" placeholder="Da" style="width:80px;" value="1">
+                    <span style="color:#555; font-size:0.8rem;">→</span>
+                    <input type="number" id="scanTo" placeholder="A" style="width:80px;" value="150">
+                </span>
+            </div>
+            <button id="loadAreasBtn" class="btn-small" style="align-self:flex-end;">Carica aree</button>
+        </div>
+
+        <div id="dashboardContent">
+            <p class="empty-state">Connetti il wallet e seleziona le aree da visualizzare.</p>
+        </div>
     </section>
 
     <section>
-      <h2>Register Operator (Owner)</h2>
-      <label>Operator Address</label>
-      <input id="operatorAddress" type="text" />
-      <label>Name</label>
-      <input id="operatorName" type="text" />
-      <button id="registerOperatorBtn">Register Operator</button>
-      <div class="msg" id="operatorMsg"></div>
+        <h2>Role Management</h2>
+        <div class="form-group">
+            <h3>Register Area</h3>
+            <label>ID: <input type="number" id="areaId" placeholder="1"></label>
+            <label>Name: <input type="text" id="areaName" placeholder="Sala Operatoria A"></label>
+            <button id="registerAreaBtn" disabled>Register Area</button>
+            <div id="areaMsg" class="msg"></div>
+        </div>
+        <div class="form-group">
+            <h3>Register Operator</h3>
+            <label>Address: <input type="text" id="operatorAddress" placeholder="0x..."></label>
+            <label>Name: <input type="text" id="operatorName" placeholder="Mario Rossi"></label>
+            <button id="registerOperatorBtn" disabled>Register Operator</button>
+            <div id="operatorMsg" class="msg"></div>
+        </div>
     </section>
 
     <section>
-      <h2>Record Sanitization (Operator)</h2>
-      <label>Area ID</label>
-      <input id="sanitAreaId" type="number" />
-      <label>Outcome (e.g. OK / FAIL)</label>
-      <input id="sanitOutcome" type="text" />
-      <label>Notes</label>
-      <input id="sanitNotes" type="text" />
-      <button id="recordSanitizationBtn">Record Sanitization</button>
-      <div class="msg" id="sanitMsg"></div>
+        <h2>Record Sanitization</h2>
+        <label>Area ID: <input type="number" id="sanitAreaId" placeholder="1"></label>
+        <label>Outcome:
+            <select id="sanitOutcome">
+                <option value="OK">OK</option>
+                <option value="WARNING">WARNING</option>
+                <option value="FAILED">FAILED</option>
+            </select>
+        </label>
+        <label>Notes: <input type="text" id="sanitNotes" placeholder="Dettagli operazione..."></label>
+        <button id="recordSanitizationBtn">Record on Chain</button>
+        <div id="sanitMsg" class="msg"></div>
     </section>
 
     <section>
-      <h2>Area Status</h2>
-      <label>Area ID</label>
-      <input id="statusAreaId" type="number" />
-      <button id="getStatusBtn">Get Status</button>
-      <pre id="statusResult"></pre>
+        <h2>Area Status</h2>
+        <label>Area ID: <input type="number" id="statusAreaId" placeholder="1"></label>
+        <button id="getStatusBtn">Get Status</button>
+        <pre id="statusResult">Inserisci un Area ID...</pre>
     </section>
 
     <section>
-      <h2>Area Events</h2>
-      <label>Area ID</label>
-      <input id="eventsAreaId" type="number" />
-      <button id="getEventsBtn">Get Events</button>
-      <pre id="eventsResult"></pre>
+        <h2>Event History</h2>
+        <label>Area ID: <input type="number" id="eventsAreaId" placeholder="1"></label>
+        <button id="getEventsBtn">Get Events</button>
+        <pre id="eventsResult">Inserisci un Area ID...</pre>
     </section>
-  </main>
+</main>
 
-  <script src="app.js"></script>
+<script src="https://unpkg.com/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\franc\\Documents\\HospitalSanitizationTracker\\contracts\\SanitizationTracker.sol": {
-      "lastModificationDate": 1771366972553,
-      "contentHash": "38168d07c557267b217599bc26771083",
+      "lastModificationDate": 1771694673008,
+      "contentHash": "63ee5e30bfe117dbaadc94a6cdf8e080",
       "sourceName": "contracts/SanitizationTracker.sol",
       "solcConfig": {
         "version": "0.8.27",
