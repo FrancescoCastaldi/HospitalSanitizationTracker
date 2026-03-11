@@ -1,5 +1,5 @@
-const CONTRACT_ADDRESS = "0x679C6625f9479cf3b711F7a246C8F7a6655E4517";
-const CONTRACT_ABI = [
+const CONTRACT_ADDRESS = "0x679C6625f9479cf3b711F7a246C8F7a6655E4517"; // indirizzo contratto già deployato su sepolia
+const CONTRACT_ABI = [ //abi minimale per gestione funzioini admin, aree ecc
     {"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},
     {"inputs":[{"internalType":"uint256","name":"_areaId","type":"uint256"},{"internalType":"string","name":"_outcome","type":"string"},{"internalType":"string","name":"_notes","type":"string"}],"name":"sanitize","outputs":[],"stateMutability":"nonpayable","type":"function"},
     {"inputs":[{"internalType":"uint256","name":"_id","type":"uint256"},{"internalType":"string","name":"_name","type":"string"}],"name":"registerArea","outputs":[],"stateMutability":"nonpayable","type":"function"},
@@ -12,17 +12,17 @@ const CONTRACT_ABI = [
 
 let provider, signer, contract, currentAccount, adminAddress = null, currentRole = "guest", knownOperatorAddress = null;
 
-function setMsg(id, text, type = '') {
+function setMsg(id, text, type = '') { //scirvo un mess in un elemento e gli asseggno classe css per stile, (success, error ecc)
     const el = document.getElementById(id);
     el.textContent = text;
     el.className = `msg ${type}`;
 }
 
-function showLoader(show) {
+function showLoader(show) { // mostro o nascondo il loader
     document.getElementById('loader').style.display = show ? 'block' : 'none';
 }
 
-function updateRoleUI() {
+function updateRoleUI() { // abilito/disabilito funzioni in base al ruolo e aggiorno badge
     const isAdmin = currentRole === 'admin';
     document.getElementById('registerAreaBtn').disabled = !isAdmin;
     document.getElementById('registerOperatorBtn').disabled = !isAdmin;
@@ -30,7 +30,7 @@ function updateRoleUI() {
     document.getElementById('walletRole').textContent = labels[currentRole] || currentRole;
 }
 
-function updateDesiredRoleHint() {
+function updateDesiredRoleHint() { // mostro un hint sotto il selector del ruolo desiderato per guidare l'utente su quale account usare in base al ruolo scelto
     const val = document.getElementById('desiredRole').value;
     const hint = document.getElementById('desiredRoleHint');
     if (val === 'admin') {
@@ -44,7 +44,7 @@ function updateDesiredRoleHint() {
     }
 }
 
-function getIdsToScan() {
+function getIdsToScan() { // leggo gli ID da scansionare in base alla modalità scelta (manuale o range)
     const mode = document.querySelector('input[name="scanMode"]:checked').value;
     if (mode === 'manual') {
         const raw = document.getElementById('manualIds').value;
@@ -60,20 +60,20 @@ function getIdsToScan() {
     }
 }
 
-async function connectWallet() {
+async function connectWallet() { //parlante, gestisce la connessione a MetaMask, rileva il ruolo dell'utente e aggiorna l'interfaccia di conseguenza. Supporta anche il cambio di account e rete in tempo reale.
     try {
         showLoader(true);
-        document.getElementById('connectButton').textContent = 'Connecting...';
+        document.getElementById('connectButton').textContent = 'Connecting...'; // disabilito il pulsante durante la connessione per evitare click multipli
         document.getElementById('connectButton').disabled = true;
 
-        if (!window.ethereum) throw new Error('MetaMask non trovato');
+        if (!window.ethereum) throw new Error('MetaMask non trovato'); // verifico che MetaMask sia presente
         if (typeof ethers === 'undefined') throw new Error('Ethers non caricato, ricarica la pagina');
 
         const desiredRole = document.getElementById('desiredRole').value;
         const hint = document.getElementById('desiredRoleHint');
         hint.innerHTML = 'Rilevamento account in corso...';
 
-        let accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        let accounts = await window.ethereum.request({ method: 'eth_accounts' }); // provo a leggere gli account già autorizzati
         if (accounts.length === 0) {
             hint.innerHTML = 'Richiedo accesso MetaMask...';
             accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -89,7 +89,7 @@ async function connectWallet() {
 
         let targetAccount = null;
 
-        if (desiredRole === 'admin') {
+        if (desiredRole === 'admin') { // se l'utente vuole connettersi come admin, cerco tra gli account disponibili quello che corrisponde all'indirizzo admin del contratto
             targetAccount = accounts.find(a => a.toLowerCase() === adminAddress.toLowerCase());
             if (!targetAccount) {
                 hint.innerHTML = `Nessun account corrisponde all'admin.<br>
@@ -110,7 +110,7 @@ async function connectWallet() {
             }
         }
 
-        currentAccount = targetAccount;
+        currentAccount = targetAccount; // aggiorno account corrente al primo che corrisponde al ruolo desiderato
         signer = await provider.getSigner(currentAccount);
         contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
@@ -118,7 +118,7 @@ async function connectWallet() {
         let op = { exists: false, active: false };
         try { op = await contract.operators(currentAccount); } catch {}
 
-        if (isAdmin) currentRole = 'admin';
+        if (isAdmin) currentRole = 'admin'; // se è admin metto direttamente quel ruolo, altrimenti controllo se è operator attivo o inattivo, altrimenti guest
         else if (op.exists && op.active) currentRole = 'operator';
         else if (op.exists && !op.active) currentRole = 'operator-inactive';
         else currentRole = 'guest';
@@ -138,7 +138,7 @@ async function connectWallet() {
     }
 }
 
-async function registerArea() {
+async function registerArea() { // funzione per registrare una nuova area, accessibile solo all'admin. Prende ID e nome dall'interfaccia, invia la transazione al contratto e aggiorna la dashboard. Se l'ID è nuovo, lo aggiunge anche alla lista di quelli da scansionare.
     const id = document.getElementById('areaId').value;
     const name = document.getElementById('areaName').value;
     if (!id || !name) return setMsg('areaMsg', 'ID e nome richiesti', 'error');
@@ -160,7 +160,7 @@ async function registerArea() {
     } finally { showLoader(false); }
 }
 
-async function registerOperator() {
+async function registerOperator() { // funzione per registrare un nuovo operator, accessibile solo all'admin. Prende indirizzo e nome dall'interfaccia, invia la transazione al contratto e aggiorna l'interfaccia. Se l'operatore registrato corrisponde a uno degli account dell'utente, aggiorna anche il ruolo corrente.
     const addr = document.getElementById('operatorAddress').value;
     const name = document.getElementById('operatorName').value;
     if (!addr || !name) return setMsg('operatorMsg', 'Indirizzo e nome richiesti', 'error');
@@ -177,7 +177,7 @@ async function registerOperator() {
     } finally { showLoader(false); }
 }
 
-async function recordSanitization() {
+async function recordSanitization() { // funzione per registrare una nuova sanificazione, accessibile solo agli operatori attivi. Prende ID area, outcome e note dall'interfaccia, invia la transazione al contratto e aggiorna la dashboard.
     const areaId = document.getElementById('sanitAreaId').value;
     const outcome = document.getElementById('sanitOutcome').value;
     const notes = document.getElementById('sanitNotes').value;
@@ -194,7 +194,7 @@ async function recordSanitization() {
     } finally { showLoader(false); }
 }
 
-async function getAreaStatus() {
+async function getAreaStatus() { // funzione per ottenere lo stato di un'area specifica, accessibile a tutti. Prende l'ID area dall'interfaccia, legge i dati dal contratto e li mostra in un formato leggibile. Se l'area non esiste, mostra un messaggio di errore.
     const areaId = document.getElementById('statusAreaId').value;
     if (!areaId) return;
     if (!contract) return alert('Connetti wallet prima');
@@ -214,7 +214,7 @@ async function getAreaStatus() {
     }
 }
 
-async function getAreaEvents() {
+async function getAreaEvents() { // funzione per ottenere tutti gli eventi di sanificazione di un'area specifica, accessibile a tutti. Prende l'ID area dall'interfaccia, legge i dati dal contratto e li mostra in un formato leggibile. Se l'area non esiste o non ha eventi, mostra un messaggio appropriato.
     const areaId = document.getElementById('eventsAreaId').value;
     if (!areaId) return;
     if (!contract) return alert('Connetti wallet prima');
@@ -233,7 +233,7 @@ async function getAreaEvents() {
     }
 }
 
-function toggleArea(id) {
+function toggleArea(id) { // funzione per mostrare/nascondere la sezione degli eventi di un'area nella dashboard quando si clicca sull'intestazione dell'area. Cambia anche l'icona accanto all'intestazione per indicare lo stato (aperto/chiuso).
     const el = document.getElementById(`events-${id}`);
     const icon = document.getElementById(`toggle-${id}`);
     const open = el.style.display === 'none';
@@ -241,11 +241,11 @@ function toggleArea(id) {
     icon.textContent = open ? '▲' : '▼';
 }
 
-async function loadDashboard() {
+async function loadDashboard() { // funzione per caricare la dashboard principale, accessibile a tutti. Legge gli ID da scansionare in base alla modalità scelta (manuale o range), recupera i dati di ogni area dal contratto e li mostra in un formato leggibile. Per ogni area mostra anche l'outcome dell'ultima sanificazione con un badge colorato e una sezione espandibile con la lista completa degli eventi.
     const container = document.getElementById('dashboardContent');
     if (!contract) return;
 
-    const ids = getIdsToScan();
+    const ids = getIdsToScan(); // leggo gli ID da scansionare in base alla modalità scelta (manuale o range)
     if (ids.length === 0) {
         container.innerHTML = `<p class="empty-state">Inserisci almeno un ID area valido.</p>`;
         return;
@@ -253,7 +253,7 @@ async function loadDashboard() {
 
     container.innerHTML = `<p class="empty-state">Caricamento ${ids.length} aree...</p>`;
 
-    const outcomeBadge = {
+    const outcomeBadge = { // definisco i badge colorati per gli outcome delle sanificazioni
         OK:      `<span class="badge badge-ok">OK</span>`,
         WARNING: `<span class="badge badge-warning">Warning</span>`,
         FAILED:  `<span class="badge badge-failed">Failed</span>`
@@ -291,7 +291,7 @@ async function loadDashboard() {
             return;
         }
 
-        container.innerHTML = areaData.map(area => {
+        container.innerHTML = areaData.map(area => { // per ogni area, costruisco l'HTML da mostrare nella dashboard. Mostro nome, stato (active/inactive), outcome dell'ultima sanificazione con badge colorato, numero di eventi e data dell'ultimo evento. La sezione degli eventi è inizialmente nascosta e si può espandere cliccando sull'intestazione dell'area.
             const last = area.events.length > 0 ? area.events[area.events.length - 1] : null;
             const lastOutcome = last?.outcome || null;
 
@@ -337,7 +337,7 @@ async function loadDashboard() {
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => { // aggiungo gli event listener ai pulsanti e agli elementi dell'interfaccia per gestire le azioni dell'utente. La connessione al wallet è gestita da connectWallet, la registrazione di aree e operatori da registerArea e registerOperator, la registrazione di sanificazioni da recordSanitization, la visualizzazione dello stato di un'area da getAreaStatus, la visualizzazione degli eventi di un'area da getAreaEvents e il caricamento della dashboard da loadDashboard. Inoltre, aggiorno l'hint del ruolo desiderato quando l'utente cambia selezione.
     document.getElementById('connectButton').addEventListener('click', connectWallet);
     document.getElementById('registerAreaBtn').addEventListener('click', registerArea);
     document.getElementById('registerOperatorBtn').addEventListener('click', registerOperator);
