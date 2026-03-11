@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./Photos/logo.png" width="80" height="80"> 
+<img src="./Photos/logo.png" width="100" height="90"> 
 
 # HospitalSanitizationTracker
 
