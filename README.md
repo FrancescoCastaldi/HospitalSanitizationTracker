@@ -1,6 +1,7 @@
 <div align="center">
 
 # HospitalSanitizationTracker
+![Uploading Gemini_Generated_Image_e1wdhpe1wdhpe1wd.png…]()
 
 **DApp per la tracciabilità delle attività di sanificazione ospedaliera tramite blockchain**
 
