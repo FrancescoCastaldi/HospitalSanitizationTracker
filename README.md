@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="./Photos/logo.png" alt="HospitalSanitizationTracker Logo" width="80" height="80"> 
+<img src="./Photos/logo.png" width="80" height="80"> 
+
 # HospitalSanitizationTracker
 
 **DApp per la tracciabilità delle attività di sanificazione ospedaliera tramite blockchain**
