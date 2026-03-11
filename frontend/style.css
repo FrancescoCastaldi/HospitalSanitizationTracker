@@ -365,5 +365,26 @@ pre {
     cursor: pointer;
     margin: 0;
 }
+.logo {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 250px;
+  height: auto;
+  border: 2px solid red; /* visibile se img manca */
+}
+footer {
+  text-align: center;
+  font-style: italic;
+  font-language-override: normal;
+      border-radius: 8px;
+  grid-auto-flow: column;
+}
+
+.footer-logo {
+  display: block;
+  margin: 10px auto 0;
+  background-color: transparent;
+}
+
 
 .scan-label input[type="radio"] { accent-color: #00bfff; cursor: pointer; }

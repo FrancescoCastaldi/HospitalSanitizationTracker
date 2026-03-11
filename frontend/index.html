@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
+<link rel="icon" type="image/png" href="./favicon-16x16.png">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hospital Sanitization Tracker</title>
@@ -10,7 +12,9 @@
 <body>
 
 <header>
-    <h1>Hospital Sanitization Tracker</h1>
+    
+    <img src="./logo.png"   width="200" height="100" style="background-color: transparent;"> 
+   <!--  <h1>Hospital Sanitization Tracker</h1> -->
     <div id="walletInfo"></div>
     <span id="walletRole" class="role-badge">Guest</span>
     <div class="role-selector">
@@ -26,6 +30,7 @@
     <button id="connectButton">Connect</button>
     <div id="loader" class="loader"></div>
 </header>
+
 
 <main>
     <section id="dashboardSection" style="grid-column: 1 / -1;">
@@ -109,5 +114,10 @@
 
 <script src="https://unpkg.com/ethers@6.13.2/dist/ethers.umd.min.js"></script>
 <script src="app.js"></script>
+<footer>
+  <p>&copy; 2026 Hospital Sanitization Tracker - Francesco Castaldi - UNIBO</p>
+  <img src="./logo.png" width="200" height="100" class="footer-logo">
+</footer>
+
 </body>
 </html>
