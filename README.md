@@ -1,114 +1,125 @@
 <div align="center">
 
-<img src="./Photos/logo.png" width="350" height="300"  style="background-color: transparent;"> 
+<img src="./Photos/logo.png" width="350" height="300" style="background-color: transparent;">
 
-# HospitalSanitizationTracker
+# 🏥 HospitalSanitizationTracker
 
-**DApp per la tracciabilità delle attività di sanificazione ospedaliera tramite blockchain**
+**A blockchain-based DApp for traceability of hospital sanitization activities**
 
-![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)
-![Network](https://img.shields.io/badge/Network-Sepolia_Testnet-6f3ff5?logo=ethereum)
-![Hardhat](https://img.shields.io/badge/Hardhat-2.28.0-f0d20c?logo=javascript)
-![Tests](https://img.shields.io/badge/Tests-14%2F14_passed-brightgreen?logo=mocha)
-![Node](https://img.shields.io/badge/Node.js-v22-339933?logo=node.js)
+[![CI](https://github.com/FrancescoCastaldi/HospitalSanitizationTracker/actions/workflows/ci.yml/badge.svg)](https://github.com/FrancescoCastaldi/HospitalSanitizationTracker/actions/workflows/ci.yml)
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
+[![Hardhat](https://img.shields.io/badge/Hardhat-2.28.0-f0d20c?logo=javascript)](https://hardhat.org/)
+[![Node](https://img.shields.io/badge/Node.js-v22-339933?logo=node.js)](https://nodejs.org/)
+[![Network](https://img.shields.io/badge/Network-Sepolia_Testnet-6f3ff5?logo=ethereum)](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517)
+[![Tests](https://img.shields.io/badge/Tests-14%2F14_passed-brightgreen?logo=mocha)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Etherscan](https://img.shields.io/badge/Etherscan-Verified-blue?logo=ethereum)](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517)
 
-*Progetto per il corso di **Blockchain e Criptovalute** – Università di Bologna*  
+*Project for the **Blockchain and Cryptocurrencies** course – University of Bologna*  
 *Proposal 7 – DLTs for Traceability in Supply Chain (AnaNSi Research Group)*
 
 </div>
 
 ---
 
-## Indice
+## Table of Contents
 
-1. [Descrizione](#descrizione)
-2. [Tecnologie Utilizzate](#tecnologie-utilizzate)
-3. [Architettura e Struttura Progetto](#architettura-e-struttura-progetto)
-4. [Smart Contract – Funzionalità](#smart-contract--funzionalit%C3%A0)
-5. [Frontend DApp – Funzionalità](#frontend-dapp--funzionalit%C3%A0)
-6. [Installazione e Utilizzo](#installazione-e-utilizzo)
-7. [Contratto Deployato](#contratto-deployato)
-8. [Autore](#autore)
-
----
-
-## Descrizione
-
-Sistema basato su smart contract Ethereum che permette a operatori autorizzati di **registrare e certificare le operazioni di sanificazione** di aree ospedaliere.
-
-Ogni evento è registrato in modo **immutabile sulla blockchain** e può essere consultato in qualsiasi momento, garantendo trasparenza e non-ripudiabilità dei dati.
+1. [Description](#description)
+2. [Tech Stack](#tech-stack)
+3. [Architecture & Project Structure](#architecture--project-structure)
+4. [Smart Contract – Features](#smart-contract--features)
+5. [Frontend DApp – Features](#frontend-dapp--features)
+6. [Installation & Usage](#installation--usage)
+7. [Deployed Contract](#deployed-contract)
+8. [Author](#author)
 
 ---
 
-## Tecnologie Utilizzate
+## Description
 
-| Tecnologia | Versione | Ruolo |
+An Ethereum smart contract-based system that allows authorized operators to **register and certify sanitization operations** of hospital areas.
+
+Every event is recorded **immutably on the blockchain** and can be queried at any time, guaranteeing transparency and non-repudiation of data.
+
+---
+
+## Tech Stack
+
+| Technology | Version | Role |
 |---|---|---|
-| Solidity | 0.8.20 | Linguaggio smart contract |
-| Hardhat | 2.28.0 | Framework sviluppo/test/deploy |
-| Ethers.js | v6 | Interazione contratto dal frontend |
-| Node.js | v22 | Runtime JavaScript |
+| Solidity | 0.8.20 | Smart contract language |
+| Hardhat | 2.28.0 | Development / test / deploy framework |
+| Ethers.js | v6 | Contract interaction from frontend |
+| Node.js | v22 | JavaScript runtime |
 | Infura | – | RPC Provider (Sepolia) |
-| MetaMask | – | Wallet per firma transazioni |
-| Ethereum Sepolia | Testnet | Rete di deploy |
+| MetaMask | – | Wallet for transaction signing |
+| Ethereum Sepolia | Testnet | Deployment network |
 
 ---
 
-## Architettura e Struttura Progetto
+## Architecture & Project Structure
 
 ```
 HospitalSanitizationTracker/
+├── .github/
+│   └── workflows/
+│       └── ci.yml                       # GitHub Actions CI pipeline
 ├── contracts/
-│   └── SanitizationTracker.sol     # Smart contract principale
+│   └── SanitizationTracker.sol          # Main smart contract
 ├── scripts/
-│   └── deploy.js                   # Script di deploy locale
+│   └── deploy.js                        # Local deploy script
 ├── ignition/
 │   └── modules/
-│       └── SanitizationTracker.js   # Modulo Hardhat Ignition (deploy testnet)
+│       └── SanitizationTracker.js       # Hardhat Ignition module (testnet deploy)
 ├── test/
-│   └── SanitizationTracker.test.js # Suite di test (14/14)
+│   └── SanitizationTracker.test.js      # Test suite (14/14)
 ├── frontend/
-│   ├── index.html                  # Interfaccia web DApp
-│   ├── app.js                      # Logica DApp + interazione contratto
-│   └── style.css                   # Stili
+│   ├── index.html                       # DApp web interface
+│   ├── app.js                           # DApp logic + contract interaction
+│   └── style.css                        # Styles
+├── Photos/
+│   └── logo.png
+├── artifacts/                           # Compilation output (gitignored)
+├── cache/                               # Hardhat cache (gitignored)
 ├── hardhat.config.js
 ├── package.json
-└── .env                            # (locale, non versionato)
+├── .env.example                         # Environment variables template
+└── .gitignore
 ```
 
 ---
 
-## Smart Contract – Funzionalità
+## Smart Contract – Features
 
-Il contratto `SanitizationTracker.sol` implementa le seguenti funzionalità:
+The `SanitizationTracker.sol` contract implements the following:
 
-### Strutture Dati
+### Data Structures
 
-| Struct | Campi principali |
+| Struct | Main Fields |
 |---|---|
 | `Area` | `id`, `name`, `active`, `exists` |
 | `Operator` | `wallet`, `name`, `active`, `exists` |
 | `SanitizationEvent` | `areaId`, `operatorAddress`, `timestamp`, `outcome`, `notes` |
 
-### Funzioni Principali
+### Main Functions
 
-| Funzione | Accesso | Descrizione |
+| Function | Access | Description |
 |---|---|---|
-| `registerArea(id, name)` | `onlyAdmin` | Registra una nuova area |
-| `setAreaActive(id, active)` | `onlyAdmin` | Attiva/disattiva un'area |
-| `registerOperator(wallet, name)` | `onlyAdmin` | Registra un nuovo operatore |
-| `setOperatorActive(wallet, active)` | `onlyAdmin` | Attiva/disattiva un operatore |
-| `sanitize(areaId, outcome, notes)` | `onlyActiveOperator` | Registra evento di sanificazione |
-| `getAreaEvents(areaId)` | pubblico | Ritorna lo storico completo |
-| `getLastSanitization(areaId)` | pubblico | Ritorna l'ultimo evento |
-| `getEventCount(areaId)` | pubblico | Ritorna il numero di eventi |
+| `registerArea(id, name)` | `onlyAdmin` | Register a new area |
+| `setAreaActive(id, active)` | `onlyAdmin` | Enable/disable an area |
+| `registerOperator(wallet, name)` | `onlyAdmin` | Register a new operator |
+| `setOperatorActive(wallet, active)` | `onlyAdmin` | Enable/disable an operator |
+| `sanitize(areaId, outcome, notes)` | `onlyActiveOperator` | Record a sanitization event |
+| `getAreaEvents(areaId)` | public | Returns full event history |
+| `getLastSanitization(areaId)` | public | Returns last event |
+| `getEventCount(areaId)` | public | Returns event count |
 
-### Modificatori di Accesso
+### Access Modifiers
 
-- **`onlyAdmin`** → solo il deployer del contratto
-- **`onlyActiveOperator`** → solo operatori registrati e attivi
+- **`onlyAdmin`** → deployer address only
+- **`onlyActiveOperator`** → registered and active operators only
 
-### Eventi On-Chain
+### On-Chain Events
 
 - `AreaRegistered(id, name)`
 - `OperatorRegistered(wallet, name)`
@@ -116,114 +127,111 @@ Il contratto `SanitizationTracker.sol` implementa le seguenti funzionalità:
 
 ---
 
-## Frontend DApp – Funzionalità
+## Frontend DApp – Features
 
-La cartella `frontend/` contiene una DApp web completa che si connette al contratto tramite MetaMask.
+The `frontend/` folder contains a full web DApp that connects to the contract via MetaMask.
 
-### Ruoli
+### Roles
 
-| Ruolo | Descrizione |
+| Role | Description |
 |---|---|
-| **Admin** | Account deployer; può registrare aree e operatori |
-| **Operator** | Account registrato dall'admin; può registrare sanificazioni |
-| **Guest** | Account non riconosciuto; accesso in sola lettura |
+| **Admin** | Deployer account; can register areas and operators |
+| **Operator** | Account registered by admin; can record sanitizations |
+| **Guest** | Unrecognized account; read-only access |
 
-> La DApp rileva automaticamente il ruolo leggendo l'`admin` address e la mappa degli `operators` direttamente dal contratto.
+> The DApp automatically detects the role by reading the `admin` address and the `operators` mapping directly from the contract.
 
-### Sezioni dell'Interfaccia
+### Interface Sections
 
-| # | Sezione | Ruolo richiesto | Funzione |
+| # | Section | Required Role | Function |
 |---|---|---|---|
-| 1 | **Header** | – | Connessione MetaMask, indirizzo connesso, ruolo rilevato |
-| 2 | **Register Area** | Admin | Registra una nuova area (`ID` + `Name`) |
-| 3 | **Register Operator** | Admin | Registra un operatore (`Wallet Address` + `Name`) |
-| 4 | **Record Sanitization** | Operator | Registra evento (`Area ID`, `Outcome`, `Notes`) |
-| 5 | **Area Status** | Tutti | Visualizza dati area + ultima sanificazione |
-| 6 | **Area Events** | Tutti | Storico completo eventi per area |
+| 1 | **Header** | – | MetaMask connection, connected address, detected role |
+| 2 | **Register Area** | Admin | Register a new area (`ID` + `Name`) |
+| 3 | **Register Operator** | Admin | Register an operator (`Wallet Address` + `Name`) |
+| 4 | **Record Sanitization** | Operator | Record event (`Area ID`, `Outcome`, `Notes`) |
+| 5 | **Area Status** | All | Display area data + last sanitization |
+| 6 | **Area Events** | All | Full event history for an area |
 
 ---
 
-## Installazione e Utilizzo
+## Installation & Usage
 
-### Prerequisiti
+### Prerequisites
 
 - Node.js v22+
-- MetaMask installato nel browser
-- Account Sepolia con ETH di test ([Sepolia Faucet](https://sepoliafaucet.com/))
+- MetaMask installed in the browser
+- Sepolia account with test ETH ([Sepolia Faucet](https://sepoliafaucet.com/))
 
 ### Setup
 
 ```bash
-# 1. Clona il repository
 git clone https://github.com/FrancescoCastaldi/HospitalSanitizationTracker.git
 cd HospitalSanitizationTracker
-
-# 2. Installa le dipendenze
 npm install
-
-# 3. Crea il file .env
 cp .env.example .env
-# Poi compila: INFURA_API_KEY=... e PRIVATE_KEY=...
+# Edit .env with your INFURA_API_KEY and PRIVATE_KEY
 ```
 
-### Comandi
+### Commands
 
 ```bash
-# Compila il contratto
+# Compile the contract
 npx hardhat compile
 
-# Esegui i test
+# Run tests
 npx hardhat test
 
-# Deploy su Sepolia (Hardhat Ignition)
+# Deploy to Sepolia (Hardhat Ignition)
 npx hardhat ignition deploy ignition/modules/SanitizationTracker.js --network sepolia
 ```
 
-### Avvio Frontend
+### Start Frontend
 
 ```bash
 npx serve frontend
-# oppure: estensione "Live Server" di VS Code
+# or use the "Live Server" extension in VS Code
 ```
 
-Aprire il browser su `http://localhost:3000` e selezionare la rete **Sepolia** in MetaMask.
+Open the browser at `http://localhost:3000` and select the **Sepolia** network in MetaMask.
 
-### Flusso Tipico di Utilizzo
+### Typical Usage Flow
 
 ```
-1. Connetti con account Admin (deployer)
-   └→ Registra un'area  (es. ID=101, Name="Sala Operatoria")
-   └→ Registra un operatore (wallet del 2° account MetaMask)
+1. Connect with Admin account (deployer)
+   └→ Register an area  (e.g. ID=101, Name="Operating Room")
+   └→ Register an operator (wallet of 2nd MetaMask account)
 
-2. Cambia account in MetaMask → Operatore
-   └→ Registra una sanificazione (Area 101, Outcome: OK, Notes: ...)
+2. Switch account in MetaMask → Operator
+   └→ Record a sanitization (Area 101, Outcome: OK, Notes: ...)
 
-3. Con qualsiasi account
-   └→ Consulta Area Status e Area Events per verificare lo storico
+3. With any account
+   └→ Check Area Status and Area Events to verify the history
 ```
 
 ---
 
-## Contratto Deployato
+## Deployed Contract
 
-| Campo | Valore |
+| Field | Value |
 |---|---|
-| **Rete** | Ethereum Sepolia Testnet |
-| **Indirizzo** | `0x679C6625f9479cf3b711F7a246C8F7a6655E4517` |
-| **Data Deploy** | 21 Febbraio 2026 |
-| **Etherscan** | [Visualizza su Sepolia Etherscan](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
+| **Network** | Ethereum Sepolia Testnet |
+| **Address** | [`0x679C6625f9479cf3b711F7a246C8F7a6655E4517`](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
+| **Deploy Date** | February 21, 2026 |
+| **Etherscan** | [View on Sepolia Etherscan](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
 
 ---
 
-## Autore
+## Author
 
 **Francesco Castaldi**  
-Università di Bologna – Corso di Blockchain e Criptovalute
+University of Bologna – Blockchain and Cryptocurrencies Course
+
+[![GitHub](https://img.shields.io/badge/GitHub-FrancescoCastaldi-181717?logo=github)](https://github.com/FrancescoCastaldi)
 
 ---
 
 <div align="center">
 
-*Progetto sviluppato a scopo accademico*
+*Project developed for academic purposes*
 
 </div>
