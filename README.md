@@ -1,19 +1,16 @@
 <div align="center">
 
-<img src="./Photos/logo.png" width="350" height="300" style="background-color: transparent;">
+<img src="./Photos/logo.png" width="350" height="300"  style="background-color: transparent;"> 
 
-# 🏥 HospitalSanitizationTracker
+# HospitalSanitizationTracker
 
 **DApp per la tracciabilità delle attività di sanificazione ospedaliera tramite blockchain**
 
-[![CI](https://github.com/FrancescoCastaldi/HospitalSanitizationTracker/actions/workflows/ci.yml/badge.svg)](https://github.com/FrancescoCastaldi/HospitalSanitizationTracker/actions/workflows/ci.yml)
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
-[![Hardhat](https://img.shields.io/badge/Hardhat-2.28.0-f0d20c?logo=javascript)](https://hardhat.org/)
-[![Node](https://img.shields.io/badge/Node.js-v22-339933?logo=node.js)](https://nodejs.org/)
-[![Network](https://img.shields.io/badge/Network-Sepolia_Testnet-6f3ff5?logo=ethereum)](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517)
-[![Tests](https://img.shields.io/badge/Tests-14%2F14_passed-brightgreen?logo=mocha)]()
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Etherscan](https://img.shields.io/badge/Etherscan-Verified-blue?logo=ethereum)](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517)
+![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)
+![Network](https://img.shields.io/badge/Network-Sepolia_Testnet-6f3ff5?logo=ethereum)
+![Hardhat](https://img.shields.io/badge/Hardhat-2.28.0-f0d20c?logo=javascript)
+![Tests](https://img.shields.io/badge/Tests-14%2F14_passed-brightgreen?logo=mocha)
+![Node](https://img.shields.io/badge/Node.js-v22-339933?logo=node.js)
 
 *Progetto per il corso di **Blockchain e Criptovalute** – Università di Bologna*  
 *Proposal 7 – DLTs for Traceability in Supply Chain (AnaNSi Research Group)*
@@ -61,30 +58,22 @@ Ogni evento è registrato in modo **immutabile sulla blockchain** e può essere 
 
 ```
 HospitalSanitizationTracker/
-├── .github/
-│   └── workflows/
-│       └── ci.yml                       # GitHub Actions CI
 ├── contracts/
-│   └── SanitizationTracker.sol          # Smart contract principale
+│   └── SanitizationTracker.sol     # Smart contract principale
 ├── scripts/
-│   └── deploy.js                        # Script di deploy locale
+│   └── deploy.js                   # Script di deploy locale
 ├── ignition/
 │   └── modules/
-│       └── SanitizationTracker.js       # Modulo Hardhat Ignition (deploy testnet)
+│       └── SanitizationTracker.js   # Modulo Hardhat Ignition (deploy testnet)
 ├── test/
-│   └── SanitizationTracker.test.js      # Suite di test (14/14)
+│   └── SanitizationTracker.test.js # Suite di test (14/14)
 ├── frontend/
-│   ├── index.html                       # Interfaccia web DApp
-│   ├── app.js                           # Logica DApp + interazione contratto
-│   └── style.css                        # Stili
-├── Photos/
-│   └── logo.png
-├── artifacts/                           # Output compilazione (gitignored)
-├── cache/                               # Cache Hardhat (gitignored)
+│   ├── index.html                  # Interfaccia web DApp
+│   ├── app.js                      # Logica DApp + interazione contratto
+│   └── style.css                   # Stili
 ├── hardhat.config.js
 ├── package.json
-├── .env.example                         # Template variabili d'ambiente
-└── .gitignore
+└── .env                            # (locale, non versionato)
 ```
 
 ---
@@ -165,11 +154,16 @@ La cartella `frontend/` contiene una DApp web completa che si connette al contra
 ### Setup
 
 ```bash
+# 1. Clona il repository
 git clone https://github.com/FrancescoCastaldi/HospitalSanitizationTracker.git
 cd HospitalSanitizationTracker
+
+# 2. Installa le dipendenze
 npm install
+
+# 3. Crea il file .env
 cp .env.example .env
-# Edita .env con INFURA_API_KEY e PRIVATE_KEY
+# Poi compila: INFURA_API_KEY=... e PRIVATE_KEY=...
 ```
 
 ### Comandi
@@ -215,7 +209,7 @@ Aprire il browser su `http://localhost:3000` e selezionare la rete **Sepolia** i
 | Campo | Valore |
 |---|---|
 | **Rete** | Ethereum Sepolia Testnet |
-| **Indirizzo** | [`0x679C6625f9479cf3b711F7a246C8F7a6655E4517`](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
+| **Indirizzo** | `0x679C6625f9479cf3b711F7a246C8F7a6655E4517` |
 | **Data Deploy** | 21 Febbraio 2026 |
 | **Etherscan** | [Visualizza su Sepolia Etherscan](https://sepolia.etherscan.io/address/0x679C6625f9479cf3b711F7a246C8F7a6655E4517) |
 
@@ -225,8 +219,6 @@ Aprire il browser su `http://localhost:3000` e selezionare la rete **Sepolia** i
 
 **Francesco Castaldi**  
 Università di Bologna – Corso di Blockchain e Criptovalute
-
-[![GitHub](https://img.shields.io/badge/GitHub-FrancescoCastaldi-181717?logo=github)](https://github.com/FrancescoCastaldi)
 
 ---
 
